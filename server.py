@@ -11,6 +11,7 @@ from adafruit_servokit import ServoKit
  
 # Set channels to the number of servo channels on your kit.
 # 8 for FeatherWing, 16 for Shield/HAT/Bonnet.
+'''
 kit = ServoKit(channels=16)
  
 kit.servo[0].angle = 180
@@ -20,8 +21,9 @@ kit.continuous_servo[1].throttle = -1
 time.sleep(1)
 kit.servo[0].angle = 0
 kit.continuous_servo[1].throttle = 0
-
 '''
+
+
 i2c_bus = busio.I2C(SCL, SDA)
 pca = [
 	PCA9685(i2c_bus,address=0x40),
@@ -39,4 +41,3 @@ track=0
 pca[track].frequency = int(frequency)
 #pca[track].channels[1].duty_cycle = int(direction)
 pca[track].channels[0].duty_cycle = 0x7fff  #go
-'''
