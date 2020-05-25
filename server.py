@@ -26,7 +26,7 @@ kit.continuous_servo[1].throttle = 0
 
 i2c_bus = busio.I2C(SCL, SDA)
 pca = [
-	PCA9685(i2c_bus,address=0x40),
+	PCA9685(i2c_bus,0x40),
 	#PCA9685(i2c_bus,address=0x41)
 	]
 frequency = 1*2300
