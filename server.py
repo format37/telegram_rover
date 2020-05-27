@@ -13,7 +13,11 @@ import time
 
 pwm = Adafruit_PCA9685.PCA9685()
 channel = 0
-pulse = 4000
+pulse = 3000 #4k max
+pwm.set_pwm(channel, 0, pulse)
+
+channel = 1
+pulse = 3000 #4k max
 pwm.set_pwm(channel, 0, pulse)
 
 # Set channels to the number of servo channels on your kit.
