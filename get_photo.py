@@ -1,5 +1,6 @@
 from picamera import PiCamera
 import time
+
 a=1920
 b=1920
 filepath='image.jpg'
