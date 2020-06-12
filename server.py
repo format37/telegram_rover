@@ -41,14 +41,27 @@ pca = PCA9685(i2c_bus)
 #frequency	= speed*2300
 frequency	= 100
 
+print('front')
 pca.frequency = frequency
 pca.channels[0].duty_cycle = 0x7fff #go
 pca.channels[1].duty_cycle = 0x7fff #go
+time.sleep(3)
+print('back')
+track(track_free,track_dir,channel=0,direction=-1)
+track(track_free,track_dir,channel=1,direction=-1)
+time.sleep(3)
+print('stop')
+track(track_free,track_dir,channel=0,direction=0)
+track(track_free,track_dir,channel=1,direction=0)
+
 while(True):
+	pass
+	'''
 	time.sleep(1)
 	frequency-=1
 	print(frequency)
 	pca.frequency = frequency	
+	'''
 
 #pca.channels[0].duty_cycle = 0 #stop
 
