@@ -22,12 +22,12 @@ def track(t_free,t_dir,channel,direction):
 	if channel==1:
 		if direction ==-1:
 			t_free[channel].off()#lock
-			t_dir[channel].on()#back
+			t_dir[channel].off()#back
 		if direction == 0:
 			t_free[channel].on()#free
 		if direction == 1:
 			t_free[channel].off()#lock
-			t_dir[channel].off()#front
+			t_dir[channel].on()#front
 
 print('init')
 track_free	= [LED(27),LED(17)]
