@@ -43,6 +43,7 @@ frequency	= 800
 
 print('start')
 #pca.frequency = 60
+pca.frequency=frequency
 pca.channels[0].duty_cycle = 0x7fff #go
 pca.channels[1].duty_cycle = 0x7fff #go
 exit()
