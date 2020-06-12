@@ -32,10 +32,14 @@ print('init')
 led.on()
 track(pwm,track_free,track_dir,channel=0,direction=0)
 track(pwm,track_free,track_dir,channel=1,direction=0)
-pwm.set_pwm_freq(15000-5000)
-
-pwm.set_pwm(0, 3000)
-pwm.set_pwm(1, 3000)
+#pwm.set_pwm_freq(15000-5000)
+#pwm.set_pwm(0, 3000)
+#pwm.set_pwm(1, 3000)
+frequency = 100*2300
+pwm[0].frequency = int(frequency)
+pwm[1].frequency = int(frequency)
+pwm.channels[0].duty_cycle = 0x7fff
+pwm.channels[1].duty_cycle = 0x7fff
 						
 print('front')
 track(pwm,track_free,track_dir,channel=0,direction=1)
