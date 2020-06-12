@@ -11,16 +11,18 @@ import time
 print('init')
 i2c_bus = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c_bus)
-speed	= 0.01
-frequency	= speed*2300
+#speed	= 0.01
+#frequency	= speed*2300
+frequency	= 100
 
-pca.frequency = int(frequency)
+pca.frequency = frequency
 pca.channels[0].duty_cycle = 0x7fff #go
 pca.channels[1].duty_cycle = 0x7fff #go
-#time.sleep(3)
-print('end')
 while(True):
-	pass
+	time.sleep(2)
+	frequency+=100
+	print(frequency)
+	pca.frequency = frequency	
 
 #pca.channels[0].duty_cycle = 0 #stop
 
