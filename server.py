@@ -39,7 +39,7 @@ i2c_bus = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c_bus)
 #speed	= 0.01
 #frequency	= speed*2300
-frequency	= 1300
+frequency	= 2300
 
 print('start')
 #pca.frequency = 60
@@ -48,7 +48,7 @@ pca.channels[0].duty_cycle = 0x7fff #go
 pca.channels[1].duty_cycle = 0x7fff #go
 while(True):
 	time.sleep(1)
-	frequency+=100
+	frequency-=100
 	print(frequency)
 	pca.frequency=frequency
 
