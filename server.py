@@ -46,13 +46,11 @@ print('start')
 pca.frequency=frequency
 pca.channels[0].duty_cycle = 0x7fff #go
 pca.channels[1].duty_cycle = 0x7fff #go
-exit()
 while(True):
-	time.sleep(1)
-	frequency-=10
+	time.sleep(2)
+	frequency+=10
 	print(frequency)
 	pca.frequency=frequency
-	pass
 
 time.sleep(1)
 
