@@ -52,15 +52,19 @@ track(pca,track_free,track_dir,channel=0,direction=0)
 track(pca,track_free,track_dir,channel=1,direction=0)
 time.sleep(3)
 
-print('front')
+print('left')
 track(pca,track_free,track_dir,channel=0,direction=-1)
 track(pca,track_free,track_dir,channel=1,direction=1)
+time.sleep(3)
+
+print('right')
+track(pca,track_free,track_dir,channel=0,direction=1)
+track(pca,track_free,track_dir,channel=1,direction=-1)
 time.sleep(3)
 
 print('stop')
 track(pca,track_free,track_dir,channel=0,direction=0)
 track(pca,track_free,track_dir,channel=1,direction=0)
-
 
 while(True):
 	time.sleep(1)
