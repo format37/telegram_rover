@@ -12,7 +12,7 @@ import time
 #from adafruit_servokit import ServoKit
 
 def track(pwm,channel,power):
-	pwm.set_pwm(channel, 0, 4000*power/100)
+	pwm.set_pwm(channel, 0, int(4000*power/100))
 
 pwm = Adafruit_PCA9685.PCA9685()
 
