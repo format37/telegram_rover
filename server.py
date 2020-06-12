@@ -37,20 +37,11 @@ track(track_free,track_dir,channel=1,direction=0)
 
 i2c_bus = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c_bus)
-#speed	= 0.01
-#frequency	= speed*2300
-frequency	= 2300
-
-print('start')
-#pca.frequency = 60
+frequency	= 900 #100-2300
 pca.frequency=frequency
 pca.channels[0].duty_cycle = 0x7fff #go
 pca.channels[1].duty_cycle = 0x7fff #go
-while(True):
-	time.sleep(1)
-	frequency-=100
-	print(frequency)
-	pca.frequency=frequency
+exit()
 
 time.sleep(1)
 
