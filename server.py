@@ -29,6 +29,7 @@ def track(pca,t_free,t_dir,channel,direction):
 			t_dir[channel].on()#front
 
 print('init')
+led			= LED(23)
 track_free	= [LED(27),LED(17)]
 track_dir	= [LED(24),LED(22)]
 
