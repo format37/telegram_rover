@@ -45,8 +45,8 @@ pca.frequency = frequency
 pca.channels[0].duty_cycle = 0x7fff #go
 pca.channels[1].duty_cycle = 0x7fff #go
 while(True):
-	time.sleep(2)
-	frequency+=100
+	time.sleep(1)
+	frequency-=1
 	print(frequency)
 	pca.frequency = frequency	
 
