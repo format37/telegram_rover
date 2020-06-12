@@ -41,7 +41,7 @@ frequency	= 900 #100-2300
 pca.frequency=frequency
 pca.channels[0].duty_cycle = 0x7fff #go
 pca.channels[1].duty_cycle = 0x7fff #go
-exit()
+#exit()
 
 time.sleep(1)
 
