@@ -15,7 +15,7 @@ def track(pwm,channel,power):
 	pwm.set_pwm(channel, 0, int(4000*power/100))
 
 pwm = Adafruit_PCA9685.PCA9685()
-
+'''
 track(pwm,0,100)
 track(pwm,1,100)
 time.sleep(3)
@@ -24,9 +24,9 @@ track(pwm,1,50)
 time.sleep(3)
 track(pwm,0,0)
 track(pwm,1,0)
-
-
 '''
+
+
 channel = 0
 pulse = 1000 #4k max
 pwm.set_pwm(channel, 0, pulse)
@@ -34,7 +34,7 @@ pwm.set_pwm(channel, 0, pulse)
 channel = 1
 pulse = 3000 #4k max
 pwm.set_pwm(channel, 0, pulse)
-'''
+
 
 # Set channels to the number of servo channels on your kit.
 # 8 for FeatherWing, 16 for Shield/HAT/Bonnet.
