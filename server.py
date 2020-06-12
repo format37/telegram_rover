@@ -62,6 +62,7 @@ pca.channels[0].duty_cycle = 0 #stop
 pca.channels[1].duty_cycle = 0 #stop
 
 while(True):
+	time.sleep(1)
 	pass
 	'''
 	time.sleep(1)
