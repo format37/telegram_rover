@@ -13,8 +13,10 @@ def track(pwm,channel,power):
 led = LED(23)
 pwm = Adafruit_PCA9685.PCA9685()
 
+led.off()
 track(pwm,0,100)
 track(pwm,1,100)
 time.sleep(3)
+led.on()
 track(pwm,0,0)
 track(pwm,1,0)
