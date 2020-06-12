@@ -32,8 +32,10 @@ print('init')
 led.off()
 track(pwm,track_free,track_dir,channel=0,direction=0)
 track(pwm,track_free,track_dir,channel=1,direction=0)
-pwm.set_pwm(0, 0, 3000)
-pwm.set_pwm(1, 0, 3000)
+pwm.set_pwm_freq(4000)
+
+#pwm.set_pwm(0, 0, 2000)
+#pwm.set_pwm(1, 0, 2000)
 						
 print('start')
 track(pwm,track_free,track_dir,channel=0,direction=1)
