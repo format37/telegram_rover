@@ -16,23 +16,13 @@ def track(pca,t_free,t_dir,channel,direction):
 		
 	if channel==0:
 		if direction ==-1:
-			#t_free[channel].off()#lock
 			t_dir[channel].on()#back			
-		#if direction == 0:
-		#	t_free[channel].on()#free
-		#	pca.channels[channel].duty_cycle = 0 #stop
 		if direction == 1:
-		#	t_free[channel].off()#lock
 			t_dir[channel].off()#front
 	if channel==1:
 		if direction ==-1:
-		#	t_free[channel].off()#lock
 			t_dir[channel].off()#back
-		#if direction == 0:
-		#	t_free[channel].on()#free
-		#	pca.channels[channel].duty_cycle = 0 #stop
 		if direction == 1:
-		#	t_free[channel].off()#lock
 			t_dir[channel].on()#front
 
 print('init')
@@ -50,16 +40,27 @@ pca.channels[1].duty_cycle = 0x7fff #go
 print('front')
 track(pca,track_free,track_dir,channel=0,direction=1)
 track(pca,track_free,track_dir,channel=1,direction=1)
-time.sleep(4)
+time.sleep(3)
 
 print('back')
 track(pca,track_free,track_dir,channel=0,direction=-1)
 track(pca,track_free,track_dir,channel=1,direction=-1)
-time.sleep(4)
+time.sleep(3)
 
 print('stop')
 track(pca,track_free,track_dir,channel=0,direction=0)
 track(pca,track_free,track_dir,channel=1,direction=0)
+time.sleep(3)
+
+print('front')
+track(pca,track_free,track_dir,channel=0,direction=-1)
+track(pca,track_free,track_dir,channel=1,direction=1)
+time.sleep(3)
+
+print('stop')
+track(pca,track_free,track_dir,channel=0,direction=0)
+track(pca,track_free,track_dir,channel=1,direction=0)
+
 
 while(True):
 	time.sleep(1)
