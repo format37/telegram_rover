@@ -14,17 +14,15 @@ led = LED(23)
 tracks=[LED(17),LED(27)]
 pwm = Adafruit_PCA9685.PCA9685()
 
-print('off')
+print('start')
 led.off()
-tracks[0].off()
-tracks[1].off()
-#track(pwm,0,100)
-#track(pwm,1,100)
-#track(pwm,0,0)
-#track(pwm,1,0)
-time.sleep(7)
-print('on')
-tracks[0].on()
-tracks[1].on()
-time.sleep(7)
+tracks[0].off()#enable
+tracks[1].off()#enable
+track(pwm,0,100)
+track(pwm,1,100)
+time.sleep(3)
+print('disable')
+tracks[0].on()#disable
+tracks[1].on()#disable
+time.sleep(5)
 print('end')
