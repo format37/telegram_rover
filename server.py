@@ -11,7 +11,7 @@ import time
 print('init')
 i2c_bus = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c_bus)
-speed	= 0.3
+speed	= 0.1
 frequency	= speed*2300
 
 pca.frequency = int(frequency)
