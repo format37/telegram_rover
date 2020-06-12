@@ -28,7 +28,7 @@ track(pwm,1,0)
 
 
 channel = 0
-pulse = 1000 #4k max
+pulse = 3000 #4k max
 pwm.set_pwm(channel, 0, pulse)
 
 channel = 1
