@@ -5,7 +5,7 @@ import time
 
 led			= LED(23)
 track_free	= [LED(17),LED(27)]
-track_dir	= [LED(22),LED(24)]
+track_dir	= [LED(24),LED(22)]
 pwm = Adafruit_PCA9685.PCA9685()
 
 def track(pwm,t_free,t_dir,channel,direction):
