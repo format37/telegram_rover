@@ -34,9 +34,6 @@ track_free	= [LED(27),LED(17)]
 track_dir	= [LED(24),LED(22)]
 track_free[0].off()
 track_free[1].on()
-while(True):
-	time.sleep(1)
-	pass
 track(track_free,track_dir,channel=0,direction=0)
 track(track_free,track_dir,channel=1,direction=0)
 
