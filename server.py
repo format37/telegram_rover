@@ -30,7 +30,7 @@ def track(t_free,t_dir,channel,direction):
 			t_dir[channel].on()#front
 
 print('init')
-track_free	= [LED(17),LED(27)]
+track_free	= [LED(27),LED(17)]
 track_dir	= [LED(24),LED(22)]
 track_free[0].off()
 track_free[1].on()
@@ -42,7 +42,7 @@ track(track_free,track_dir,channel=1,direction=0)
 
 i2c_bus = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c_bus)
-frequency	= 900 #100-2300
+frequency	= 900 #speed 100-2300
 pca.frequency=frequency
 pca.channels[0].duty_cycle = 0x7fff #go
 pca.channels[1].duty_cycle = 0x7fff #go
