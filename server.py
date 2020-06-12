@@ -1,28 +1,40 @@
 #!/usr/bin/env python3
-#from board import SCL, SDA
-#import busio
 from gpiozero import LED
 import Adafruit_PCA9685
-#import RPi.GPIO as gpio
 import time
 
-def track(pwm,channel,power):
-	print(channel,int(4000*power/100))
-	pwm.set_pwm(channel, 0, int(4000*power/100))
-	
 led = LED(23)
-tracks=[LED(17),LED(27)]
+track_free=[LED(17),LED(27)]
 pwm = Adafruit_PCA9685.PCA9685()
 
+def track(pwm,t_free,channel,direction):
+	if channel==0:
+		if direction ==-1:
+			t_free[channel].off()#lock
+		if direction == 0:
+			t_free[channel].on()#free
+		if direction == 1:
+			t_free[channel].off()#lock
+	if channel==1:
+		if direction ==-1:
+			t_free[channel].off()#lock
+		if direction == 0:
+			t_free[channel].on()#free
+		if direction == 1:
+			t_free[channel].off()#lock
+
+print('init')
+track(pwm,track_free,channel=0,direction=0)
+track(pwm,track_free,channel=1,direction=0)
+pwm.set_pwm(channel, 0, 4000)
+						
 print('start')
-led.off()
-tracks[0].off()#enable
-tracks[1].off()#enable
-track(pwm,0,100)
-track(pwm,1,100)
+track(pwm,track_free,channel=0,direction=1)
+track(pwm,track_free,channel=1,direction=1)
 time.sleep(3)
+
 print('disable')
-tracks[0].on()#disable
-tracks[1].on()#disable
-time.sleep(5)
-print('end')
+track(pwm,track_free,channel=0,direction=0)
+track(pwm,track_free,channel=1,direction=0)
+while(True):
+	pass
