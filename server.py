@@ -26,8 +26,8 @@ def track(pwm,t_free,channel,direction):
 print('init')
 track(pwm,track_free,channel=0,direction=0)
 track(pwm,track_free,channel=1,direction=0)
-pwm.set_pwm(0, 0, 4000)
-pwm.set_pwm(1, 0, 4000)
+pwm.set_pwm(0, 0, 3000)
+pwm.set_pwm(1, 0, 3000)
 						
 print('start')
 track(pwm,track_free,channel=0,direction=1)
