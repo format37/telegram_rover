@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from gpiozero import LED
 #import Adafruit_PCA9685
+#pwm = Adafruit_PCA9685.PCA9685()
 
 from board import SCL, SDA
 import busio
@@ -31,8 +32,8 @@ def track(t_free,t_dir,channel,direction):
 print('init')
 track_free	= [LED(17),LED(27)]
 track_dir	= [LED(24),LED(22)]
-track(pwm,track_free,track_dir,channel=0,direction=1)
-track(pwm,track_free,track_dir,channel=1,direction=1)
+track(track_free,track_dir,channel=0,direction=1)
+track(track_free,track_dir,channel=1,direction=1)
 
 i2c_bus = busio.I2C(SCL, SDA)
 pca = PCA9685(i2c_bus)
