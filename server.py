@@ -27,17 +27,18 @@ def track(pwm,t_free,t_dir,channel,direction):
 			t_free[channel].off()#lock
 
 print('init')
+led.off()
 track(pwm,track_free,track_dir,channel=0,direction=0)
 track(pwm,track_free,track_dir,channel=1,direction=0)
-pwm.set_pwm(0, 0, 3000)
-pwm.set_pwm(1, 0, 3000)
+pwm.set_pwm(0, 0, 4000)
+pwm.set_pwm(1, 0, 4000)
 						
 print('start')
 track(pwm,track_free,track_dir,channel=0,direction=1)
-#track(pwm,track_free,track_dir,channel=1,direction=1)
+track(pwm,track_free,track_dir,channel=1,direction=1)
 time.sleep(3)
 track(pwm,track_free,track_dir,channel=0,direction=-1)
-#track(pwm,track_free,track_dir,channel=1,direction=-1)
+track(pwm,track_free,track_dir,channel=1,direction=-1)
 time.sleep(3)
 
 
