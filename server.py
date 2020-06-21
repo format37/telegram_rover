@@ -40,8 +40,12 @@ pca.channels[1].duty_cycle = 0x7fff #go
 print('back')
 track(pca,track_free,track_dir,channel=0,direction=-1)
 track(pca,track_free,track_dir,channel=1,direction=-1)
-time.sleep(10)
+time.sleep(6)
 
+print('front')
+track(pca,track_free,track_dir,channel=0,direction=1)
+track(pca,track_free,track_dir,channel=1,direction=1)
+time.sleep(17)
 
 '''
 print('front')
