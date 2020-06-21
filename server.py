@@ -46,7 +46,7 @@ time.sleep(6)
 print('front')
 track(pca,track_free,track_dir,channel=0,direction=1)
 track(pca,track_free,track_dir,channel=1,direction=1)
-time.sleep(3)
+time.sleep(1)
 
 '''
 print('front')
