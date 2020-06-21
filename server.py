@@ -94,7 +94,8 @@ def move_back():
 
 async def call_check(request):
 	return web.Response(text='ok',content_type="text/html")
-	
+
+app = web.Application()
 app.router.add_route('GET', '/check', call_check)
 
 # Start aiohttp server
