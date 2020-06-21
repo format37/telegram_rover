@@ -10,7 +10,7 @@ import asyncio
 
 import time
 
-PORT = '88'
+PORT = '8823'
 
 def track(pca,t_free,t_dir,channel,direction):
 	if direction==0:
