@@ -101,6 +101,6 @@ app.router.add_route('GET', '/check', call_check)
 # Start aiohttp server
 web.run_app(
     app,
-    host='localhost',
+    host='172.27.220.5',
     port=PORT,
 )
