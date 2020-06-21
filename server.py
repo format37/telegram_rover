@@ -37,14 +37,19 @@ pca.frequency=frequency
 pca.channels[0].duty_cycle = 0x7fff #go
 pca.channels[1].duty_cycle = 0x7fff #go
 
+print('back')
+track(pca,track_free,track_dir,channel=0,direction=-1)
+track(pca,track_free,track_dir,channel=1,direction=-1)
+time.sleep(10)
+
+
+'''
 print('front')
-track_power.on()
 track(pca,track_free,track_dir,channel=0,direction=1)
 track(pca,track_free,track_dir,channel=1,direction=1)
 time.sleep(3)
 
 print('back')
-track_power.off()
 track(pca,track_free,track_dir,channel=0,direction=-1)
 track(pca,track_free,track_dir,channel=1,direction=-1)
 time.sleep(3)
@@ -63,7 +68,7 @@ print('right')
 track(pca,track_free,track_dir,channel=0,direction=1)
 track(pca,track_free,track_dir,channel=1,direction=-1)
 time.sleep(3)
-
+'''
 print('stop')
 track(pca,track_free,track_dir,channel=0,direction=0)
 track(pca,track_free,track_dir,channel=1,direction=0)
