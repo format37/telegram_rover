@@ -36,7 +36,7 @@ def call_move(request):
 	delay		= float(request.rel_url.query['delay'])
 	track_left	= int(request.rel_url.query['track_left'])
 	track_right	= int(request.rel_url.query['track_right'])
-	frequency	= int( request.rel_url.query['speed']*2300/100 )
+	frequency	= int( float(request.rel_url.query['speed'])*2300/100 )
 	frequency	= frequency if frequency>100 else 100
 	
 	print('init')
