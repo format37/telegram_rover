@@ -97,6 +97,7 @@ async def call_check(request):
 
 app = web.Application()
 app.router.add_route('GET', '/check', call_check)
+app.router.add_route('GET', '/back', move_back)
 
 # Start aiohttp server
 web.run_app(
