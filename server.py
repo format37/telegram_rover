@@ -31,7 +31,13 @@ def track(pca,t_free,t_dir,channel,direction):
 		if direction == 1:
 			t_dir[channel].on()#front
 
-def move_back(request):
+def call_move(request):
+	
+	delay		= float(request.rel_url.query['delay'])
+	track_left	= int(request.rel_url.query['track_left'])
+	track_right	= int(request.rel_url.query['track_right'])
+	frequency	= int( request.rel_url.query['speed']*2300/100 )
+	frequency	= frequency if frequency>100 else 100
 	
 	print('init')
 	track_power	= LED(23)
@@ -40,16 +46,18 @@ def move_back(request):
 
 	i2c_bus = busio.I2C(SCL, SDA)
 	pca = PCA9685(i2c_bus)
-	frequency	= 900 #speed 100-2300
+	#frequency	= 900 #speed 100-2300
 	pca.frequency=frequency
 	pca.channels[0].duty_cycle = 0x7fff #go
 	pca.channels[1].duty_cycle = 0x7fff #go
 
 	
-	print('back')
-	track(pca,track_free,track_dir,channel=0,direction=-1)
-	track(pca,track_free,track_dir,channel=1,direction=-1)
-	time.sleep(3)
+	#print('back')
+	
+	track(pca,track_free,track_dir,channel=0,direction=track_left)
+	track(pca,track_free,track_dir,channel=1,direction=track_right)
+	time.sleep(delay)
+	
 	'''
 	print('front')
 	track(pca,track_free,track_dir,channel=0,direction=1)
@@ -81,12 +89,11 @@ def move_back(request):
 	track(pca,track_free,track_dir,channel=0,direction=1)
 	track(pca,track_free,track_dir,channel=1,direction=-1)
 	time.sleep(3)
-	'''
+'''
 	print('stop')
 	track(pca,track_free,track_dir,channel=0,direction=0)
 	track(pca,track_free,track_dir,channel=1,direction=0)
-
-	'''
+'''
 	while(True):
 		time.sleep(1)
 		pass
@@ -97,7 +104,7 @@ async def call_check(request):
 
 app = web.Application()
 app.router.add_route('GET', '/check', call_check)
-app.router.add_route('GET', '/back', move_back)
+app.router.add_route('GET', '/move', call_move)
 
 # Start aiohttp server
 web.run_app(
