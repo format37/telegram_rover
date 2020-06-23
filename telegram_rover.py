@@ -15,7 +15,7 @@ def bot_init(WEBHOOK_HOST,WEBHOOK_PORT,WEBHOOK_SSL_CERT, SCRIPT_PATH):
 
 	# Set webhook
 	wh_res = bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH,certificate=open(WEBHOOK_SSL_CERT, 'r'))
-	print('bot webhook set',wh_res)
+	print('rover webhook set',wh_res)
 	print(WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)
 
 	return bot
