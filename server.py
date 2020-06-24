@@ -7,8 +7,9 @@ from adafruit_pca9685 import PCA9685
 # server
 from aiohttp import web
 import asyncio
-
+from picamera import PiCamera
 import time
+import telebot
 
 PORT = '8823'
 
@@ -58,13 +59,40 @@ def call_move(request):
 	# stop
 	track(pca,track_free,track_dir,channel=0,direction=0)
 	track(pca,track_free,track_dir,channel=1,direction=0)
+	
+async def call_photo(request):
+	
+	# get photo
+	#a=1920
+	#b=1920
+	a=640 # 1920
+	b=480 # 1920
+	filepath='image.jpg'
+	camera = PiCamera()
+	#camera.rotation=180
+	camera.resolution = (int(a), int(b))
+	camera.start_preview()
+	time.sleep(1)
+	camera.capture(filepath)
+	camera.stop_preview()
+	camera.close()
+	
+	# send to telegram
+	with open(SCRIPT_PATH+'token.key','r') as file:
+		API_TOKEN=file.read().replace('\n', '')
+		file.close()
+	bot = telebot.TeleBot(API_TOKEN)
+	data_file = open('image.jpg', 'rb')
+	bot.send_photo('-384403215', data_file)
+	return web.Response(text='ok',content_type="text/html")
 
 async def call_check(request):
 	return web.Response(text='ok',content_type="text/html")
 
 app = web.Application()
-app.router.add_route('GET', '/check', call_check)
-app.router.add_route('GET', '/move', call_move)
+app.router.add_route('GET', '/move',	call_move)
+app.router.add_route('GET', '/photo',	call_photo)
+app.router.add_route('GET', '/check',	call_check)
 
 # Start aiohttp server
 web.run_app(
