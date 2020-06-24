@@ -38,24 +38,29 @@ def move_cmd(user_id,cmd):
 	'''
 	#cmd = 'track_left=-1&track_right=-1&delay=5&speed=10'
 	url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
-	requests.get(url,headers = headers)
+	return	requests.get(url)
+	#return	requests.get(url,headers = headers)
 
 def move_f(user_id,delay,speed):
 	cmd 	= 'track_left=1&track_right=1&delay='+str(delay)+'&speed='+str(speed)
 	url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
-	return	requests.get(url,headers = headers)
+	return	requests.get(url)
+	#return	requests.get(url,headers = headers)
 	
 def move_b(user_id,delay,speed):
 	cmd 	= 'track_left=-1&track_right=-1&delay='+str(delay)+'&speed='+str(speed)
 	url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
-	return	requests.get(url,headers = headers)
+	return	requests.get(url)
+	#return	requests.get(url,headers = headers)
 	
 def move_l(user_id,delay,speed):
 	cmd 	= 'track_left=-1&track_right=1&delay='+str(delay)+'&speed='+str(speed)
 	url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
-	return	requests.get(url,headers = headers)
+	return	requests.get(url)
+	#return	requests.get(url,headers = headers)
 	
 def move_r(user_id,delay,speed):
 	cmd 	= 'track_left=1&track_right=-1&delay='+str(delay)+'&speed='+str(speed)
 	url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
-	return	requests.get(url,headers = headers)
+	return	requests.get(url)
+	#return	requests.get(url,headers = headers)
