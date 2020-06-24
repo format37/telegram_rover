@@ -25,7 +25,8 @@ def move_cmd(user_id,cmd):
 	god_mode	= user_id == 106129214
 	if god_mode:
 		url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
-		requests.get(url,headers = headers)
+		requests.get(url)
+		#requests.get(url,headers = headers)
 		return 'job complete: '+cmd
 	else:
 		return "unavailable for. u"
