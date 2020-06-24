@@ -95,6 +95,13 @@ app.router.add_route('GET', '/move',	call_move)
 app.router.add_route('GET', '/photo',	call_photo)
 app.router.add_route('GET', '/check',	call_check)
 
+# send ready
+with open('/home/pi/telegram_rover/token.key','r') as file:
+	MAIN_API_TOKEN=file.read().replace('\n', '')
+	file.close()
+main_bot = telebot.TeleBot(MAIN_API_TOKEN)
+main_bot.send_message('-384403215', 'ready')
+
 # Start aiohttp server
 web.run_app(
     app,
