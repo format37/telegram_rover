@@ -62,14 +62,12 @@ def call_move(request):
 	
 async def call_photo(request):
 	
-	print('photo requested')
-		
 	# get photo
 	#a=1920
 	#b=1920
 	a=640 # 1920
 	b=480 # 1920
-	filepath='image.jpg'
+	filepath='/home/pi/telegram_rover/image.jpg'
 	camera = PiCamera()
 	#camera.rotation=180
 	camera.resolution = (int(a), int(b))
@@ -80,14 +78,12 @@ async def call_photo(request):
 	camera.close()
 	
 	# send to telegram
-	with open('token.key','r') as file:
+	with open('/home/pi/telegram_rover/token.key','r') as file:
 		API_TOKEN=file.read().replace('\n', '')
 		file.close()
 	bot = telebot.TeleBot(API_TOKEN)
 	data_file = open('image.jpg', 'rb')
 	bot.send_photo('-384403215', data_file)
-	
-	print('photo sent')
 	
 	return web.Response(text='ok',content_type="text/html")
 
