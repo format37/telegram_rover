@@ -61,6 +61,8 @@ def call_move(request):
 	track(pca,track_free,track_dir,channel=1,direction=0)
 	
 async def call_photo(request):
+	
+	print('photo requested')
 		
 	# get photo
 	#a=1920
@@ -84,6 +86,8 @@ async def call_photo(request):
 	bot = telebot.TeleBot(API_TOKEN)
 	data_file = open('image.jpg', 'rb')
 	bot.send_photo('-384403215', data_file)
+	
+	print('photo sent')
 	
 	return web.Response(text='ok',content_type="text/html")
 
