@@ -71,7 +71,7 @@ def move_r(user_id,delay,speed):
 	else:
 		return "unavailable for. u"
 	
-def get_photo(user_id):
+def rover_photo(user_id):
 	god_mode	= user_id == 106129214
 	if god_mode:
 		return	'p'
