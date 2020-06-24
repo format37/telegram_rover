@@ -82,7 +82,7 @@ async def call_photo(request):
 		API_TOKEN=file.read().replace('\n', '')
 		file.close()
 	bot = telebot.TeleBot(API_TOKEN)
-	data_file = open('image.jpg', 'rb')
+	data_file = open('/home/pi/telegram_rover/image.jpg', 'rb')
 	bot.send_photo('-384403215', data_file)
 	
 	return web.Response(text='ok',content_type="text/html")
