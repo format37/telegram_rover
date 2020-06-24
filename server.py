@@ -62,6 +62,10 @@ def call_move(request):
 	
 async def call_photo(request):
 	
+	print('photo start')
+	
+	return web.Response(text='ok',content_type="text/html")
+	
 	# get photo
 	#a=1920
 	#b=1920
@@ -77,6 +81,8 @@ async def call_photo(request):
 	camera.stop_preview()
 	camera.close()
 	
+	print('photo send')
+	
 	# send to telegram
 	with open(SCRIPT_PATH+'token.key','r') as file:
 		API_TOKEN=file.read().replace('\n', '')
@@ -84,6 +90,9 @@ async def call_photo(request):
 	bot = telebot.TeleBot(API_TOKEN)
 	data_file = open('image.jpg', 'rb')
 	bot.send_photo('-384403215', data_file)
+	
+	print('photo complete')
+	
 	return web.Response(text='ok',content_type="text/html")
 
 async def call_check(request):
