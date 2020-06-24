@@ -78,7 +78,7 @@ async def call_photo(request):
 	camera.close()
 	
 	# send to telegram
-	with open(SCRIPT_PATH+'token.key','r') as file:
+	with open('token.key','r') as file:
 		API_TOKEN=file.read().replace('\n', '')
 		file.close()
 	bot = telebot.TeleBot(API_TOKEN)
