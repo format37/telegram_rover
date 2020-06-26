@@ -10,6 +10,8 @@ import asyncio
 from picamera import PiCamera
 import time
 import telebot
+from ina219 import INA219
+import time
 
 PORT = '8823'
 
@@ -83,7 +85,12 @@ async def call_photo(request):
 		file.close()
 	bot = telebot.TeleBot(API_TOKEN)
 	data_file = open('/home/pi/telegram_rover/image.jpg', 'rb')
-	bot.send_photo('-384403215', data_file)
+	
+	SHUNT_OHMS = 0.1
+	ina = INA219(SHUNT_OHMS)
+	ina.configure()	
+	
+	bot.send_photo( '-384403215', data_file, caption = str(ina.voltage())+" v" )
 	
 	return web.Response(text='ok',content_type="text/html")
 
