@@ -65,10 +65,12 @@ def call_move(request):
 async def call_photo(request):
 	
 	# get photo
-	a=1920
-	b=1920
-	#a=640 # 1920
-	#b=480 # 1920
+	#a=1920
+	#b=1920
+	#a=640
+	#b=480
+	a=320
+	b=240
 	filepath='/home/pi/telegram_rover/image.jpg'
 	camera = PiCamera()
 	#camera.rotation=180
