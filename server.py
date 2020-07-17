@@ -43,7 +43,7 @@ def call_move(request):
 	frequency	= frequency if frequency>100 else 100
 	
 	# init
-	track_power	= LED(23)
+	track_power	= LED(23)	
 	track_free	= [LED(27),LED(17)]
 	track_dir	= [LED(24),LED(22)]
 
@@ -64,6 +64,7 @@ def call_move(request):
 	
 async def call_photo(request):
 	
+	night_led	= LED(25)
 	# get photo
 	#a=1920
 	#b=1920
