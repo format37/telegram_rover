@@ -66,12 +66,12 @@ async def call_photo(request):
 	
 	night_led	= LED(25)
 	# get photo
-	#a=1920
-	#b=1920
+	a=1920
+	b=1920
 	#a=640
 	#b=480
-	a=320
-	b=240
+	#a=320
+	#b=240
 	filepath='/home/pi/telegram_rover/image.jpg'
 	camera = PiCamera()
 	#camera.rotation=180
