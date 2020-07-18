@@ -75,10 +75,8 @@ def call_move(request):
 	track(pca,track_free,track_dir,channel=1,direction=0)
 	
 async def call_photo(request):
-	
-	
-	
-	ir_cut.off()	
+			
+	ir_cut.on()	
 	#night_led.on()
 	
 	# get photo
