@@ -65,6 +65,7 @@ def call_move(request):
 async def call_photo(request):
 	
 	night_led	= LED(25)
+	night_led.on()
 	# get photo
 	a=1920
 	b=1920
