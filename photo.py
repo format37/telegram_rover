@@ -1,5 +1,5 @@
 import time
-import resource
+#import resource
 import sys
 from gpiozero import LED
 #import telebot
@@ -12,7 +12,7 @@ from picamera import PiCamera
 import telebot
 from ina219 import INA219
 import time
-import subprocess
+#import subprocess
 
 #try:
 ir_cut	= LED(25)
@@ -25,8 +25,8 @@ ir_cut.on()
 nigth_led.off()
 
 # get photo
-a=200 #1920
-b=200 #1920
+a=1200 #1920
+b=1200 #1920
 filepath='/home/pi/telegram_rover/image.jpg'
 camera = PiCamera()
 #camera.rotation=180
