@@ -81,8 +81,16 @@ async def call_photo(request):
 	['python3', SCRIPT_PATH+'photo.py','0'],
 	stdout=subprocess.PIPE, 
 	stderr=subprocess.STDOUT)
-	stdout,stderr = MyOut.communicate()	
-	
+	stdout,stderr = MyOut.communicate()		
+	return web.Response(text='ok',content_type="text/html")
+
+async def call_photo_night(request):
+	SCRIPT_PATH = '/home/pi/telegram_rover/'
+	MyOut = subprocess.Popen(
+	['python3', SCRIPT_PATH+'photo.py','1'],
+	stdout=subprocess.PIPE, 
+	stderr=subprocess.STDOUT)
+	stdout,stderr = MyOut.communicate()		
 	return web.Response(text='ok',content_type="text/html")
 
 async def call_check(request):
@@ -93,6 +101,7 @@ rover_init()
 app = web.Application()
 app.router.add_route('GET', '/move',	call_move)
 app.router.add_route('GET', '/photo',	call_photo)
+app.router.add_route('GET', '/photo_night',	call_photo_night)
 app.router.add_route('GET', '/check',	call_check)
 
 # Start aiohttp server

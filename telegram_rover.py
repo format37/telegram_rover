@@ -70,6 +70,14 @@ def rover_photo(user_id):
 	god_mode	= user_id == 106129214
 	if god_mode:
 		url	= "http://95.165.139.53:8823/telegram_rover_photo.php"
-		return	'ok p '+str(requests.get(url))
+		return	'ok p '+requests.get(url).text
+	else:
+		return "unavailable for. u"
+
+def rover_photo_night(user_id):
+	god_mode	= user_id == 106129214
+	if god_mode:
+		url	= "http://95.165.139.53:8823/telegram_rover_photo_night.php"
+		return	'ok n '+requests.get(url).text
 	else:
 		return "unavailable for. u"
