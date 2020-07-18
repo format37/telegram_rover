@@ -18,13 +18,6 @@ ir_cut	= LED(25)
 #night_led = LED(8)
 #night_led.off()
 
-def led_flash(led_time):
-	SCRIPT_PATH = '/home/pi/telegram_rover/'
-	MyOut = subprocess.Popen(
-	['python3', SCRIPT_PATH+'led_control.py',str(led_time)],
-	stdout=subprocess.PIPE, 
-	stderr=subprocess.STDOUT)
-	stdout,stderr = MyOut.communicate()
 
 def rover_init():
 	# send ready
@@ -83,8 +76,12 @@ def call_move(request):
 	track(pca,track_free,track_dir,channel=1,direction=0)
 	
 async def call_photo(request):
-			
-	
+	SCRIPT_PATH = '/home/pi/telegram_rover/'
+	MyOut = subprocess.Popen(
+	['python3', SCRIPT_PATH+'photo.py','0'],
+	stdout=subprocess.PIPE, 
+	stderr=subprocess.STDOUT)
+	stdout,stderr = MyOut.communicate()	
 	
 	return web.Response(text='ok',content_type="text/html")
 
