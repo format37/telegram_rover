@@ -77,7 +77,7 @@ def call_move(request):
 async def call_photo(request):
 			
 	ir_cut.on()	
-	#night_led.on()
+	#ight_led.on()
 	
 	# get photo
 	a=1920
@@ -96,7 +96,7 @@ async def call_photo(request):
 	camera.stop_preview()
 	camera.close()
 	
-	#night_led.off()
+	night_led.off()
 	
 	# send to telegram
 	with open('/home/pi/telegram_rover/token.key','r') as file:
