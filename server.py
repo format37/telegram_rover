@@ -18,7 +18,7 @@ ir_cut	= LED(25)
 night_led = LED(8)
 night_led.off()
 
-def rover_init(night_led):
+def rover_init():
 	# send ready
 	with open('/home/pi/telegram_rover/token.key','r') as file:
 		MAIN_API_TOKEN=file.read().replace('\n', '')
@@ -116,7 +116,7 @@ async def call_photo(request):
 async def call_check(request):
 	return web.Response(text='ok',content_type="text/html")
 
-rover_init(night_led)
+rover_init()
 
 app = web.Application()
 app.router.add_route('GET', '/move',	call_move)
