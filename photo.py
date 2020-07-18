@@ -4,13 +4,14 @@ import sys
 from gpiozero import LED
 import telebot
 from ina219 import INA219
+from picamera import PiCamera
 
 try:
 	ir_cut	= LED(25)
 	nigth_led = LED(8)
 	nigth_mode = int(sys.argv[1]) #0 or 1
 	res_limits = resource.getrusage(resource.RUSAGE_SELF)
-	resource.setrlimit(resource.RLIMIT_CPU, (10, 10))
+	resource.setrlimit(resource.RLIMIT_CPU, (10, 1))
 	
 	ir_cut.on()
 	nigth_led.off()
