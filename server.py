@@ -12,11 +12,20 @@ import time
 import telebot
 from ina219 import INA219
 import time
+import subprocess
 
 PORT = '8823'
 ir_cut	= LED(25)
-night_led = LED(8)
-night_led.off()
+#night_led = LED(8)
+#night_led.off()
+
+def led_flash(led_time):
+	SCRIPT_PATH = '/home/pi/telegram_rover/'
+	MyOut = subprocess.Popen(
+	['python3', SCRIPT_PATH+'led_control.py',str(led_time)],
+	stdout=subprocess.PIPE, 
+	stderr=subprocess.STDOUT)
+	stdout,stderr = MyOut.communicate()
 
 def rover_init():
 	# send ready
@@ -76,40 +85,7 @@ def call_move(request):
 	
 async def call_photo(request):
 			
-	ir_cut.on()	
-	#ight_led.on()
 	
-	# get photo
-	a=1920
-	b=1920
-	#a=640
-	#b=480
-	#a=320
-	#b=240
-	filepath='/home/pi/telegram_rover/image.jpg'
-	camera = PiCamera()
-	#camera.rotation=180
-	camera.resolution = (int(a), int(b))
-	camera.start_preview()
-	time.sleep(1)
-	camera.capture(filepath)
-	camera.stop_preview()
-	camera.close()
-	
-	night_led.off()
-	
-	# send to telegram
-	with open('/home/pi/telegram_rover/token.key','r') as file:
-		API_TOKEN=file.read().replace('\n', '')
-		file.close()
-	bot = telebot.TeleBot(API_TOKEN)
-	data_file = open('/home/pi/telegram_rover/image.jpg', 'rb')
-	
-	SHUNT_OHMS = 0.1
-	ina = INA219(SHUNT_OHMS)
-	ina.configure()	
-	
-	bot.send_photo( '-384403215', data_file, caption = str(ina.voltage())+" v" )
 	
 	return web.Response(text='ok',content_type="text/html")
 
