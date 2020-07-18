@@ -1,28 +1,22 @@
 import time
-#import resource
 import sys
 from gpiozero import LED
-#import telebot
-#from ina219 import INA219
-#from picamera import PiCamera
-
 from aiohttp import web
 import asyncio
 from picamera import PiCamera
 import telebot
 from ina219 import INA219
-import time
-#import subprocess
 
-#try:
 ir_cut	= LED(25)
 nigth_led = LED(8)
 nigth_mode = int(sys.argv[1]) #0 or 1
-#res_limits = resource.getrusage(resource.RUSAGE_SELF)
-#resource.setrlimit(resource.RLIMIT_CPU, (10, 10))
 
-ir_cut.on()
-nigth_led.off()
+if nigth_mode:
+	ir_cut.off()
+	nigth_led.on()
+else:
+	ir_cut.on()
+	nigth_led.off()
 
 # get photo
 a=1200 #1920
@@ -50,8 +44,4 @@ SHUNT_OHMS = 0.1
 ina = INA219(SHUNT_OHMS)
 ina.configure()	
 print('sending photo..')
-bot.send_photo( '-384403215', data_file, caption = "v" )
-#bot.send_photo( '-384403215', data_file, caption = str(ina.voltage())+" v" )		
-	
-#except Exception as e:
-#	print(e)
+bot.send_photo( '-384403215', data_file, caption = str(ina.voltage())+" v" )		
