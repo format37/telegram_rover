@@ -17,7 +17,7 @@ PORT = '8823'
 ir_cut	= LED(25)
 night_led = LED(8)
 
-def rover_init():
+def rover_init(night_led):
 	#night_led = LED(8)
 	night_led.off()
 	
@@ -120,7 +120,7 @@ async def call_photo(request):
 async def call_check(request):
 	return web.Response(text='ok',content_type="text/html")
 
-rover_init()
+rover_init(night_led)
 
 app = web.Application()
 app.router.add_route('GET', '/move',	call_move)
