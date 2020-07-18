@@ -41,6 +41,8 @@ camera.close()
 with open('/home/pi/telegram_rover/token.key','r') as file:
 	API_TOKEN=file.read().replace('\n', '')
 	file.close()
+
+telebot.apihelper.READ_TIMEOUT = 5
 bot = telebot.TeleBot(API_TOKEN)
 data_file = open('/home/pi/telegram_rover/image.jpg', 'rb')
 
