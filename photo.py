@@ -10,7 +10,7 @@ try:
 	nigth_led = LED(8)
 	nigth_mode = int(sys.argv[1]) #0 or 1
 	res_limits = resource.getrusage(resource.RUSAGE_SELF)
-	resource.setrlimit(resource.RLIMIT_CPU, (1, 10))
+	resource.setrlimit(resource.RLIMIT_CPU, (10, 10))
 	
 	ir_cut.on()
 	nigth_led.off()
