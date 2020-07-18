@@ -42,15 +42,16 @@ with open('/home/pi/telegram_rover/token.key','r') as file:
 	API_TOKEN=file.read().replace('\n', '')
 	file.close()
 
-telebot.apihelper.READ_TIMEOUT = 5
+telebot.apihelper.READ_TIMEOUT = 15
 bot = telebot.TeleBot(API_TOKEN)
 data_file = open('/home/pi/telegram_rover/image.jpg', 'rb')
 
 SHUNT_OHMS = 0.1
 ina = INA219(SHUNT_OHMS)
 ina.configure()	
-
-bot.send_photo( '-384403215', data_file, caption = str(ina.voltage())+" v" )		
+print('sending photo..')
+bot.send_photo( '-384403215', data_file, caption = "v" )
+#bot.send_photo( '-384403215', data_file, caption = str(ina.voltage())+" v" )		
 	
 #except Exception as e:
 #	print(e)
