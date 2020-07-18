@@ -8,7 +8,6 @@ from adafruit_pca9685 import PCA9685
 from aiohttp import web
 import asyncio
 from picamera import PiCamera
-import time
 import telebot
 from ina219 import INA219
 import time

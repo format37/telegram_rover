@@ -2,9 +2,17 @@ import time
 import resource
 import sys
 from gpiozero import LED
+#import telebot
+#from ina219 import INA219
+#from picamera import PiCamera
+
+from aiohttp import web
+import asyncio
+from picamera import PiCamera
 import telebot
 from ina219 import INA219
-from picamera import PiCamera
+import time
+import subprocess
 
 #try:
 ir_cut	= LED(25)
