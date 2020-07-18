@@ -15,6 +15,18 @@ import time
 
 PORT = '8823'
 
+def rover_init():
+	night_led = LED(8)
+	night_led.off()
+	
+	# send ready
+	with open('/home/pi/telegram_rover/token.key','r') as file:
+		MAIN_API_TOKEN=file.read().replace('\n', '')
+		file.close()
+	main_bot = telebot.TeleBot(MAIN_API_TOKEN)
+	main_bot.send_message('-384403215', 'ready')
+
+
 def track(pca,t_free,t_dir,channel,direction):
 	if direction==0:
 		t_free[channel].on()#free
@@ -64,8 +76,12 @@ def call_move(request):
 	
 async def call_photo(request):
 	
-	night_led	= LED(25)
-	night_led.off()
+	ir_cut	= LED(25)
+	night_led = LED(8)
+	
+	ir_cut.off()	
+	night_led.on()
+	
 	# get photo
 	a=1920
 	b=1920
@@ -82,6 +98,8 @@ async def call_photo(request):
 	camera.capture(filepath)
 	camera.stop_preview()
 	camera.close()
+	
+	night_led.off()
 	
 	# send to telegram
 	with open('/home/pi/telegram_rover/token.key','r') as file:
@@ -101,17 +119,12 @@ async def call_photo(request):
 async def call_check(request):
 	return web.Response(text='ok',content_type="text/html")
 
+rover_init()
+
 app = web.Application()
 app.router.add_route('GET', '/move',	call_move)
 app.router.add_route('GET', '/photo',	call_photo)
 app.router.add_route('GET', '/check',	call_check)
-
-# send ready
-with open('/home/pi/telegram_rover/token.key','r') as file:
-	MAIN_API_TOKEN=file.read().replace('\n', '')
-	file.close()
-main_bot = telebot.TeleBot(MAIN_API_TOKEN)
-main_bot.send_message('-384403215', 'ready')
 
 # Start aiohttp server
 web.run_app(
