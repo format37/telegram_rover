@@ -6,7 +6,7 @@ import telebot
 from ina219 import INA219
 from picamera import PiCamera
 
-try:
+#try:
 	ir_cut	= LED(25)
 	nigth_led = LED(8)
 	nigth_mode = int(sys.argv[1]) #0 or 1
@@ -42,5 +42,5 @@ try:
 	
 	bot.send_photo( '-384403215', data_file, caption = str(ina.voltage())+" v" )		
 	
-except Exception as e:
-	print(e)
+#except Exception as e:
+#	print(e)
