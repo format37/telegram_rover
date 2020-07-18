@@ -16,11 +16,9 @@ import time
 PORT = '8823'
 ir_cut	= LED(25)
 night_led = LED(8)
+night_led.off()
 
 def rover_init(night_led):
-	#night_led = LED(8)
-	night_led.off()
-	
 	# send ready
 	with open('/home/pi/telegram_rover/token.key','r') as file:
 		MAIN_API_TOKEN=file.read().replace('\n', '')
