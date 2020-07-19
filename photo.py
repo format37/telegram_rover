@@ -19,8 +19,8 @@ else:
 	nigth_led.off()
 
 # get photo
-a=1200 #1920
-b=1200 #1920
+a=600 #1920
+b=600 #1920
 filepath='/home/pi/telegram_rover/image.jpg'
 camera = PiCamera()
 #camera.rotation=180
