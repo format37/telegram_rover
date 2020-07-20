@@ -19,7 +19,7 @@ else:
 	nigth_led.off()
 
 # get photo
-a=600 #1920
+a=600 #2560
 b=600 #1920
 filepath='/home/pi/telegram_rover/image.jpg'
 camera = PiCamera()
