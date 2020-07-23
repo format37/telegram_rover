@@ -64,7 +64,7 @@ def call_move(request):
 	SHUNT_OHMS = 0.1
 	ina = INA219(SHUNT_OHMS)
 	ina.configure()	
-	annotate = str(int(delay))+" - "+str(track_left)+" : "+str(track_right)+" ( "+str(ina.voltage())+" v )"
+	annotate = str(int(request.rel_url.query['speed']))+" x "str(int(delay))+" # "+str(track_left)+" : "+str(track_right)+" ( "+str(ina.voltage())+" v )"
 	
 	# video start
 	camera = PiCamera()
