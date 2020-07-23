@@ -15,7 +15,6 @@ import subprocess
 import datetime
 
 PORT = '8823'
-ir_cut	= LED(25)
 #night_led = LED(8)
 #night_led.off()
 
@@ -57,6 +56,8 @@ def call_move(request):
 	frequency	= frequency if frequency>100 else 100
 	
 	# video start
+	ir_cut	= LED(25)
+	ir_cut.on()
 	camera = PiCamera()
 	camera.start_preview()
 	filename = 'video_'+(f"{datetime.datetime.now():%Y.%m.%d_%H:%M:%S}")+'.h264'
@@ -86,6 +87,7 @@ def call_move(request):
 	camera.stop_recording()
 	camera.stop_preview()
 	camera.close()
+	ir_cut.off()
 	
 async def call_photo(request):
 	SCRIPT_PATH = '/home/pi/telegram_rover/'
