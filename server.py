@@ -55,12 +55,21 @@ def call_move(request):
 	frequency	= int( float(request.rel_url.query['speed'])*2300/100 )
 	frequency	= frequency if frequency>100 else 100
 	
-	# video start
+	# ir-cut enable
 	ir_cut	= LED(25)
 	ir_cut.on()
-	time.sleep(0.5)
+	time.sleep(0.6)
+	
+	# voltmeter
+	SHUNT_OHMS = 0.1
+	ina = INA219(SHUNT_OHMS)
+	ina.configure()	
+	annotate = str(delay)+" - "+str(track_left)+" : "+str(track_right)+" ( "+str(ina.voltage())+" v )"
+	
+	# video start
 	camera = PiCamera()
-	camera.start_preview()
+	camera.annotate_text = annotate
+	camera.start_preview()	
 	filename = 'video_'+(f"{datetime.datetime.now():%Y.%m.%d_%H:%M:%S}")+'.h264'
 	camera.start_recording('/home/pi/telegram_rover/capture/'+filename)	
 	
