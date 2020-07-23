@@ -57,12 +57,10 @@ def call_move(request):
 	frequency	= frequency if frequency>100 else 100
 	
 	# video start
-	'''
 	camera = PiCamera()
 	camera.start_preview()
 	filename = 'video_'+(f"{datetime.datetime.now():%Y.%m.%d_%H:%M:%S}")+'.h264'
-	camera.start_recording('/home/pi/telegram_rover/capture/'+filename)
-	'''
+	camera.start_recording('/home/pi/telegram_rover/capture/'+filename)	
 	
 	# init
 	track_power	= LED(23)	
@@ -85,11 +83,9 @@ def call_move(request):
 	track(pca,track_free,track_dir,channel=1,direction=0)
 	
 	# video stop
-	'''
 	camera.stop_recording()
 	camera.stop_preview()
 	camera.close()
-	'''
 	
 async def call_photo(request):
 	SCRIPT_PATH = '/home/pi/telegram_rover/'
