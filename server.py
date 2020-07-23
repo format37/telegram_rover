@@ -58,6 +58,7 @@ def call_move(request):
 	# video start
 	ir_cut	= LED(25)
 	ir_cut.on()
+	time.sleep(0.5)
 	camera = PiCamera()
 	camera.start_preview()
 	filename = 'video_'+(f"{datetime.datetime.now():%Y.%m.%d_%H:%M:%S}")+'.h264'
