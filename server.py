@@ -12,6 +12,7 @@ import telebot
 from ina219 import INA219
 import time
 import subprocess
+import datetime
 
 PORT = '8823'
 ir_cut	= LED(25)
@@ -47,13 +48,19 @@ def track(pca,t_free,t_dir,channel,direction):
 		if direction == 1:
 			t_dir[channel].on()#front
 
-def call_move(request):
+def call_move(request):	
 	
 	delay		= float(request.rel_url.query['delay'])
 	track_left	= int(request.rel_url.query['track_left'])
 	track_right	= int(request.rel_url.query['track_right'])
 	frequency	= int( float(request.rel_url.query['speed'])*2300/100 )
 	frequency	= frequency if frequency>100 else 100
+	
+	# video start
+	camera = PiCamera()
+	camera.start_preview()
+	filename = 'video_'+(f"{datetime.datetime.now():%Y.%m.%d_%H:%M:%S}")+'.h264'
+	camera.start_recording('/home/pi/telegram_rover/capture/'+filename)
 	
 	# init
 	track_power	= LED(23)	
@@ -74,6 +81,11 @@ def call_move(request):
 	# stop
 	track(pca,track_free,track_dir,channel=0,direction=0)
 	track(pca,track_free,track_dir,channel=1,direction=0)
+	
+	# video stop
+	camera.stop_recording()
+	camera.stop_preview()
+	camera.close()
 	
 async def call_photo(request):
 	SCRIPT_PATH = '/home/pi/telegram_rover/'
