@@ -52,7 +52,8 @@ def call_move(request):
 	delay		= float(request.rel_url.query['delay'])
 	track_left	= int(request.rel_url.query['track_left'])
 	track_right	= int(request.rel_url.query['track_right'])
-	frequency	= int( float(request.rel_url.query['speed'])*2300/100 )
+	speed		= int(request.rel_url.query['speed'])
+	frequency	= int( float(speed)*2300/100 )
 	frequency	= frequency if frequency>100 else 100
 	
 	# ir-cut enable
@@ -64,7 +65,7 @@ def call_move(request):
 	SHUNT_OHMS = 0.1
 	ina = INA219(SHUNT_OHMS)
 	ina.configure()	
-	annotate = str(int(request.rel_url.query['speed']))+" x "str(int(delay))+" # "+str(track_left)+" : "+str(track_right)+" ( "+str(ina.voltage())+" v )"
+	annotate = str(speed)+" x "+str(int(delay))+" # "+str(track_left)+" : "+str(track_right)+" ( "+str(ina.voltage())+" v )"
 	
 	# video start
 	camera = PiCamera()
