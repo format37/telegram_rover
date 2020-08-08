@@ -38,8 +38,11 @@ def merge(mp4_files):
 		cmd.append('-cat')
 		cmd.append(full_path)
 	cmd.append(script_path+'out.mp4')
+	for command in cmd:
+		print(command)
 	MP4Box = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
 	out, err = MP4Box.communicate()
+	if(err) : print('error',err)
 
 h264_files,mp4_files = convert()
 merge(mp4_files)
