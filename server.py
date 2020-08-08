@@ -121,6 +121,10 @@ def call_move(request):
 	nigth_led.off()
 	time.sleep(0.6)
 	
+	for root, subdirs, files in os.walk(script_path+'h264/'):
+		pass
+	return web.Response(text=str(len(files))+' video records stored',content_type="text/html")
+	
 async def call_photo(request):
 	key_path = '/home/pi/telegram_rover/night_vision.key'
 	night_key = read_night_key(key_path)
@@ -139,15 +143,6 @@ def read_night_key(key_path):
 	return night_key
 		
 async def call_photo_night(request):
-	'''
-	SCRIPT_PATH = '/home/pi/telegram_rover/'
-	MyOut = subprocess.Popen(
-	['python3', SCRIPT_PATH+'photo.py','1'],
-	stdout=subprocess.PIPE, 
-	stderr=subprocess.STDOUT)
-	stdout,stderr = MyOut.communicate()		
-	return web.Response(text='ok',content_type="text/html")
-	'''
 	# night vision switcher
 	key_path = '/home/pi/telegram_rover/night_vision.key'
 	night_key = read_night_key(key_path)
