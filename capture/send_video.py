@@ -27,7 +27,7 @@ for root, subdirs, files in os.walk(script_path+'h264/'):
 					script_path+'mp4/'+filename[:-5]+'.mp4'
 			  ]
 		ffmpeg = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
-		out, err = ffmpeg.communicate(frames.tostring() )
+		out, err = ffmpeg.communicate()
 
 		if(err) : print('error',err)
 		
