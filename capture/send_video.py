@@ -16,7 +16,7 @@ def convert(script_path):
 	h264_files = []
 	file_number = 0
 	for root, subdirs, files in os.walk(script_path+'h264/'):
-		for filename in files:
+		for filename in sorted(files):
 			mp4_filepath = script_path+'mp4/out'+str(file_number)+'.mp4'
 			cmd = [ 'ffmpeg',
 						'-framerate', '24',
