@@ -90,7 +90,7 @@ def call_move(request):
 	track(pca,track_free,track_dir,channel=0,direction=track_left)
 	track(pca,track_free,track_dir,channel=1,direction=track_right)
 	time_spent = 0
-	while time_spent<delay
+	while time_spent<delay:
 		time.sleep(0.1)
 		time_spent+=0.1
 		annotate = str(speed)+" x "+str(time_spent)+" / "+str(int(delay))+" # "+str(track_left)+" : "+str(track_right)+" ( "+str(ina.voltage())+" v )"
