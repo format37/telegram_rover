@@ -28,12 +28,15 @@ for root, subdirs, files in os.walk(script_path+'h264/'):
 		cmd = 'ffmpeg -framerate 24 -i '+script_path+'h264/'+filename+' -c copy '+script_path+'mp4/'+filename[:-5]+'.mp4'
 		mp4_files.append(script_path+'mp4/'+filename[:-5]+'.mp4')
 		#print('ffmpeg'+cmd)
-		MyOut = subprocess.Popen(
-			cmd,
-			stdout=subprocess.PIPE, 
-			stderr=subprocess.STDOUT
-		)
-		stdout,stderr = MyOut.communicate()
-		for line in stdout:
+		#MyOut = subprocess.Popen(
+		#	cmd,
+		#	stdout=subprocess.PIPE, 
+		#	stderr=subprocess.STDOUT
+		#)
+		#stdout,stderr = MyOut.communicate()
+		#for line in stdout:
+		#	print(line)
+		process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,universal_newlines=True)
+		for line in process.stdout:
 			print(line)
 print('k')
