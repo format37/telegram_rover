@@ -11,6 +11,7 @@ from picamera import PiCamera
 import telebot
 from ina219 import INA219
 import time
+import os
 import subprocess
 import datetime
 
