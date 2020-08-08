@@ -120,6 +120,7 @@ async def call_photo(request):
 	return web.Response(text='ok',content_type="text/html")
 
 async def call_photo_night(request):
+	'''
 	SCRIPT_PATH = '/home/pi/telegram_rover/'
 	MyOut = subprocess.Popen(
 	['python3', SCRIPT_PATH+'photo.py','1'],
@@ -127,7 +128,26 @@ async def call_photo_night(request):
 	stderr=subprocess.STDOUT)
 	stdout,stderr = MyOut.communicate()		
 	return web.Response(text='ok',content_type="text/html")
-
+	'''
+	# night vision switcher
+	key_path = '/home/pi/telegram_rover/night_vision.key'
+	with open(key_path,'r') as file:
+		night_key=int(file.read().replace('\n', ''))
+		file.close()
+		
+	if night_key:
+		answer = 'Night vision: Disabled'
+		night_key = 0
+	else:
+		answer = 'Night vision: Enabled'
+		night_key = 1
+		
+	with open(key_path,'w') as file:
+		file.write(night_key)
+		file.close()
+		
+	return web.Response(text=answer,content_type="text/html")
+	
 async def call_video(request):
 	script_path = '/home/pi/telegram_rover/capture/'
 	delete_first(script_path,20)
