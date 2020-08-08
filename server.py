@@ -122,6 +122,7 @@ def call_move(request):
 	time.sleep(0.6)
 	
 	script_path = '/home/pi/telegram_rover/capture/'
+	delete_first(script_path,20)
 	for root, subdirs, files in os.walk(script_path+'h264/'):
 		pass
 	return web.Response(text=str(len(files))+' video records stored',content_type="text/html")
