@@ -17,10 +17,9 @@ script_path = '/home/pi/telegram_rover/capture/'
 for root, subdirs, files in os.walk(script_path+'h264/'):
 	for filename in files:
 		#cmd+=' -cat '+script_path+'h264/'filename
-		cmd = ' -framerate 24 -i '+filename+' -c copy '+script_path+'mp4/'+filename[:-5]
-		mp4_files.append(script_path+'mp4/'+filename[:-5])
+		cmd = ' -framerate 24 -i '+script_path+'h264/'+filename+' -c copy '+script_path+'mp4/'+filename[:-5]+'.mp4'
+		mp4_files.append(script_path+'mp4/'+filename[:-5]+'.mp4')
 		print('ffmpeg'+cmd)
-		'''
 		MyOut = subprocess.Popen(
 			#['MP4Box', cmd],
 			['ffmpeg', cmd],
@@ -28,5 +27,4 @@ for root, subdirs, files in os.walk(script_path+'h264/'):
 			stderr=subprocess.STDOUT
 		)
 		stdout,stderr = MyOut.communicate()
-		'''		
 print('k')
