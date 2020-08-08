@@ -111,7 +111,8 @@ def call_move(request):
 	ir_cut.off()
 	
 async def call_photo(request):
-	night_key = read_night_key()
+	key_path = '/home/pi/telegram_rover/night_vision.key'
+	night_key = read_night_key(key_path)
 	SCRIPT_PATH = '/home/pi/telegram_rover/'
 	MyOut = subprocess.Popen(
 	['python3', SCRIPT_PATH+'photo.py',str(night_key)],
@@ -120,8 +121,7 @@ async def call_photo(request):
 	stdout,stderr = MyOut.communicate()		
 	return web.Response(text='ok',content_type="text/html")
 
-def read_night_key():
-	key_path = '/home/pi/telegram_rover/night_vision.key'
+def read_night_key(key_path):	
 	with open(key_path,'r') as file:
 		night_key=int(file.read().replace('\n', ''))
 		file.close()
@@ -138,7 +138,8 @@ async def call_photo_night(request):
 	return web.Response(text='ok',content_type="text/html")
 	'''
 	# night vision switcher
-	night_key = read_night_key()
+	key_path = '/home/pi/telegram_rover/night_vision.key'
+	night_key = read_night_key(key_path)
 		
 	if night_key:
 		answer = 'Night vision: Disabled'
