@@ -1,3 +1,8 @@
+from picamera import PiCamera
+import telebot
+import os
+import subprocess
+
 def video_send_to_telegram(script_path):
 	with open('/home/pi/telegram_rover/token.key','r') as file:
 		MAIN_API_TOKEN=file.read().replace('\n', '')
