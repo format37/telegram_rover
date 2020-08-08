@@ -121,10 +121,11 @@ def call_move(request):
 	nigth_led.off()
 	time.sleep(0.6)
 	
-	#for root, subdirs, files in os.walk(script_path+'h264/'):
-	#	pass
-	#return web.Response(text=str(len(files))+' video records stored',content_type="text/html")
-	return web.Response(text=' video records stored',content_type="text/html")
+	script_path = '/home/pi/telegram_rover/capture/'
+	for root, subdirs, files in os.walk(script_path+'h264/'):
+		pass
+	return web.Response(text=str(len(files))+' video records stored',content_type="text/html")
+	#return web.Response(text=' video records stored',content_type="text/html")
 	
 async def call_photo(request):
 	key_path = '/home/pi/telegram_rover/night_vision.key'
