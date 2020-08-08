@@ -28,7 +28,7 @@ def convert():
 			out, err = ffmpeg.communicate()
 			mp4_files.append(script_path+'mp4/'+filename[:-5]+'.mp4')
 			h264_files.append(script_path+'h264/'+filename)
-	return mp4_files
+	return h264_files,mp4_files
 
 def merge(mp4_files):
 	script_path = '/home/pi/telegram_rover/capture/'
