@@ -1,6 +1,7 @@
 from my_video import video_convert, video_merge, video_send_to_telegram, video_delete_files, delete_first
 
 script_path = '/home/pi/telegram_rover/capture/'
+'''
 print('delete first')
 delete_first(script_path,30)
 print('convert')
@@ -13,3 +14,5 @@ if len(mp4_files):
 	print('delete all')
 	video_delete_files(script_path,h264_files, mp4_files)
 print(str(len(mp4_files))+' merged')
+'''
+video_send_to_telegram(script_path)
