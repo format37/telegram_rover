@@ -1,7 +1,7 @@
 import telebot
 import os
 import subprocess
-import sh
+#import sh
 
 def send_to_telegram():
 	with open('/home/pi/telegram_rover/token.key','r') as file:
