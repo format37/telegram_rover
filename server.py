@@ -72,7 +72,7 @@ def call_move(request):
 	camera.annotate_text = annotate
 	camera.start_preview()	
 	filename = 'video_'+(f"{datetime.datetime.now():%Y.%m.%d_%H:%M:%S}")+'.h264'
-	camera.start_recording('/home/pi/telegram_rover/capture/'+filename)	
+	camera.start_recording('/home/pi/telegram_rover/capture/h264/'+filename)	
 	
 	# init
 	track_power	= LED(23)	
