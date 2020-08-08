@@ -9,7 +9,7 @@ def send_to_telegram(script_path):
 		file.close()
 	main_bot = telebot.TeleBot(MAIN_API_TOKEN)
 	video_file = open(script_path+'/mp4/out.mp4', 'rb')
-	main_bot.send_video('-384403215', video_file,timeout=10)
+	main_bot.send_video('-384403215', video_file,timeout=600)
 	
 def convert(script_path):
 	mp4_files = []
@@ -39,11 +39,8 @@ def merge(script_path,mp4_files):
 		cmd.append('-cat')
 		cmd.append(full_path)
 	cmd.append(script_path+'mp4/out.mp4')
-	for command in cmd:
-		print(command)
 	MP4Box = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
 	out, err = MP4Box.communicate()
-	if(err) : print('error',err)
 
 def delete_files(script_path,h264_files,mp4_files):	
 	mp4_files.append(script_path+'mp4/out.mp4')
