@@ -3,6 +3,17 @@ import telebot
 import os
 import subprocess
 
+def delete_first(script_path,files_to_live_count):
+	current_file_number = 0
+	for root, subdirs, files in os.walk(script_path+'h264/'):
+		for filename in sorted(files, reverse=True):
+			if current_file_number>=files_to_live_count:
+				print('unlink: ' + filename)
+				os.unlink(script_path+'h264/' + filename)
+			else:
+				print("don't touch: " + filename)
+			current_file_number+=1
+
 def video_send_to_telegram(script_path):
 	with open('/home/pi/telegram_rover/token.key','r') as file:
 		MAIN_API_TOKEN=file.read().replace('\n', '')
@@ -27,6 +38,8 @@ def video_convert(script_path):
 				  ]
 			ffmpeg = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
 			out, err = ffmpeg.communicate()
+			if(err) :
+				print('error',err)
 			mp4_files.append(mp4_filepath)
 			print(mp4_filepath)
 			h264_files.append(script_path+'h264/'+filename)
@@ -43,6 +56,8 @@ def video_merge(script_path,mp4_files):
 	print(cmd)
 	MP4Box = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
 	out, err = MP4Box.communicate()
+	if(err) :
+		print('error',err)
 
 def video_delete_files(script_path,h264_files,mp4_files):	
 	mp4_files.append(script_path+'mp4/out.mp4')

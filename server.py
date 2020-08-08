@@ -14,7 +14,7 @@ import time
 import os
 import subprocess
 import datetime
-from my_video import video_convert, video_merge, video_send_to_telegram, video_delete_files
+from my_video import video_convert, video_merge, video_send_to_telegram, video_delete_files, delete_first
 
 PORT = '8823'
 #night_led = LED(8)
@@ -130,6 +130,7 @@ async def call_photo_night(request):
 
 async def call_video(request):
 	script_path = '/home/pi/telegram_rover/capture/'
+	delete_first(script_path,30)
 	h264_files,mp4_files = video_convert(script_path)
 	if len(mp4_files):
 		video_merge(script_path, mp4_files)
