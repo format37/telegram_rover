@@ -14,6 +14,7 @@ def send_to_telegram():
 def convert():
 	mp4_files = []
 	h264_files = []
+	file_number = 0
 	script_path = '/home/pi/telegram_rover/capture/'
 	for root, subdirs, files in os.walk(script_path+'h264/'):
 		for filename in files:		
@@ -22,12 +23,13 @@ def convert():
 						'-i',
 						script_path+'h264/'+filename,
 						'-c','copy',
-						script_path+'mp4/'+filename[:-5]+'.mp4'
+						script_path+'mp4/out'+str(file_nuber)+'.mp4'
 				  ]
 			ffmpeg = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
 			out, err = ffmpeg.communicate()
 			mp4_files.append(script_path+'mp4/'+filename[:-5]+'.mp4')
 			h264_files.append(script_path+'h264/'+filename)
+			file_number+=1
 	return h264_files,mp4_files
 
 def merge(mp4_files):
