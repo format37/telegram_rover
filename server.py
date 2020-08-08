@@ -56,6 +56,7 @@ def call_move(request):
 	speed		= int(request.rel_url.query['speed'])
 	frequency	= int( float(speed)*2300/100 )
 	frequency	= frequency if frequency>100 else 100
+	time_spent  = 0
 	
 	# ir-cut enable
 	ir_cut	= LED(25)
@@ -65,8 +66,9 @@ def call_move(request):
 	# voltmeter
 	SHUNT_OHMS = 0.1
 	ina = INA219(SHUNT_OHMS)
-	ina.configure()	
-	annotate = str(speed)+" x "+str(int(delay))+" # "+str(track_left)+" : "+str(track_right)+" ( "+str(ina.voltage())+" v )"
+	ina.configure()		
+	#annotate = str(speed)+" x "+str(int(delay))+" # "+str(track_left)+" : "+str(track_right)+" ( "+str(ina.voltage())+" v )"
+	annotate = str(round(ina.voltage(),2))+" v. "+str(round(time_spent,1))+" / "+str(int(delay))
 	
 	# video start
 	camera = PiCamera()
@@ -88,12 +90,12 @@ def call_move(request):
 	
 	# move	
 	track(pca,track_free,track_dir,channel=0,direction=track_left)
-	track(pca,track_free,track_dir,channel=1,direction=track_right)
-	time_spent = 0
+	track(pca,track_free,track_dir,channel=1,direction=track_right)	
 	while time_spent<delay:
 		time.sleep(0.1)
 		time_spent+=0.1
-		annotate = str(speed)+" x "+str(time_spent)+" / "+str(int(delay))+" # "+str(track_left)+" : "+str(track_right)+" ( "+str(ina.voltage())+" v )"
+		#annotate = str(speed)+" x "+str(time_spent)+" / "+str(int(delay))+" # "+str(track_left)+" : "+str(track_right)+" ( "+str(ina.voltage())+" v )"
+		annotate = str(round(ina.voltage(),2))+" v. "+str(round(time_spent,1))+" / "+str(int(delay))
 		camera.annotate_text = annotate
 	
 	# stop
@@ -101,6 +103,7 @@ def call_move(request):
 	track(pca,track_free,track_dir,channel=1,direction=0)
 	
 	# video stop
+	time.sleep(1)
 	camera.stop_recording()
 	camera.stop_preview()
 	camera.close()
