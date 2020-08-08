@@ -143,7 +143,7 @@ async def call_photo_night(request):
 		night_key = 1
 		
 	with open(key_path,'w') as file:
-		file.write(night_key)
+		file.write(str(night_key))
 		file.close()
 		
 	return web.Response(text=answer,content_type="text/html")
