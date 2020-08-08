@@ -25,7 +25,7 @@ def move_cmd(user_id,cmd):
 	god_mode	= user_id == 106129214
 	if god_mode:
 		url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
-		return 'ok cmd '+str(requests.get(url))
+		return 'ok cmd '+str(requests.get(url).text)
 	else:
 		return "unavailable for. u"
 
@@ -34,7 +34,7 @@ def move_f(user_id,delay,speed):
 	if god_mode:
 		cmd 	= 'track_left=1&track_right=1&delay='+str(delay)+'&speed='+str(speed)
 		url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
-		return	'ok f '+str(requests.get(url))
+		return	'ok f '+str(requests.get(url).text)
 	else:
 		return "unavailable for. u"
 
@@ -44,7 +44,7 @@ def move_b(user_id,delay,speed):
 	if god_mode:
 		cmd 	= 'track_left=-1&track_right=-1&delay='+str(delay)+'&speed='+str(speed)
 		url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
-		return	'ok b '+str(requests.get(url))
+		return	'ok b '+str(requests.get(url).text)
 	else:
 		return "unavailable for. u"
 	
@@ -53,7 +53,7 @@ def move_l(user_id,delay,speed):
 	if god_mode:
 		cmd 	= 'track_left=-1&track_right=1&delay='+str(delay)+'&speed='+str(speed)
 		url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
-		return	'ok l '+str(requests.get(url))
+		return	'ok l '+str(requests.get(url).text)
 	else:
 		return "unavailable for. u"	
 		
@@ -62,7 +62,7 @@ def move_r(user_id,delay,speed):
 	if god_mode:
 		cmd 	= 'track_left=1&track_right=-1&delay='+str(delay)+'&speed='+str(speed)
 		url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd		
-		return	'ok r '+str(requests.get(url))
+		return	'ok r '+str(requests.get(url).text)
 	else:
 		return "unavailable for. u"
 	
