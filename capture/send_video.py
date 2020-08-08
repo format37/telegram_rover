@@ -9,17 +9,24 @@ def send_to_telegram():
 	video_file = open('/home/pi/telegram_rover/capture/mp4/out.mp4', 'rb')
 	main_bot.send_video('-384403215', video_file,timeout=10)
 	
-
+#converting
+mp4_files = []
 script_path = '/home/pi/telegram_rover/capture/'
-cmd = ' -force-cat'
+#cmd = ' -force-cat'
+#cmd = '-framerate 24 -i'
 for root, subdirs, files in os.walk(script_path+'h264/'):
 	for filename in files:
-		cmd+=' -cat '+script_path+'h264/'filename
-cmd+=' '+script_path+'mp4/out.mp4'
-print(cmd)
-MyOut = subprocess.Popen(
-['MP4Box', cmd],
-stdout=subprocess.PIPE, 
-stderr=subprocess.STDOUT)
-stdout,stderr = MyOut.communicate()		
+		#cmd+=' -cat '+script_path+'h264/'filename
+		cmd = ' -framerate 24 -i '+filename+' -c copy '+script_path+'mp4/'+filename[:-5]
+		mp4_files.append(script_path+'mp4/'+filename[:-5])
+		print('ffmpeg'+cmd)
+		'''
+		MyOut = subprocess.Popen(
+			#['MP4Box', cmd],
+			['ffmpeg', cmd],
+			stdout=subprocess.PIPE, 
+			stderr=subprocess.STDOUT
+		)
+		stdout,stderr = MyOut.communicate()
+		'''		
 print('k')
