@@ -7,6 +7,10 @@ from picamera import PiCamera
 import telebot
 from ina219 import INA219
 
+SHUNT_OHMS = 0.1
+ina = INA219(SHUNT_OHMS)
+ina.configure()	
+
 ir_cut	= LED(25)
 nigth_led = LED(8)
 nigth_mode = int(sys.argv[1]) #0 or 1
@@ -26,7 +30,16 @@ camera = PiCamera()
 #camera.rotation=180
 camera.resolution = (int(a), int(b))
 camera.start_preview()
-time.sleep(1)
+#time.sleep(1)
+time_spent = 0
+delay = 1
+minimal_voltage = ina.voltage()
+while time_spent<delay:
+	time.sleep(0.1)
+	voltage_current = ina.voltage()
+	if voltage_current<minimal_voltage:
+		minimal_voltage = voltage_current
+	time_spent+=0.1
 camera.capture(filepath)
 camera.stop_preview()
 camera.close()
@@ -40,8 +53,5 @@ telebot.apihelper.READ_TIMEOUT = 15
 bot = telebot.TeleBot(API_TOKEN)
 data_file = open('/home/pi/telegram_rover/image.jpg', 'rb')
 
-SHUNT_OHMS = 0.1
-ina = INA219(SHUNT_OHMS)
-ina.configure()	
 print('sending photo..')
-bot.send_photo( '-384403215', data_file, caption = str(ina.voltage())+" v" )		
+bot.send_photo( '-384403215', data_file, caption = str(minimal_voltage)+" v" )		
