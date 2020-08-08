@@ -86,6 +86,6 @@ def rover_send_video_merged(user_id):
 	god_mode	= user_id == 106129214
 	if god_mode:
 		url	= "http://95.165.139.53:8823/telegram_rover_video.php"
-		return	'ok p '+requests.get(url).text
+		return	'ok v '+requests.get(url).text
 	else:
 		return "unavailable for. u"

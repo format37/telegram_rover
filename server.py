@@ -119,7 +119,7 @@ async def call_photo_night(request):
 	return web.Response(text='ok',content_type="text/html")
 
 async def call_video(request):
-	SCRIPT_PATH = '/home/pi/telegram_rover/capture'
+	SCRIPT_PATH = '/home/pi/telegram_rover/capture/'
 	MyOut = subprocess.Popen(
 	['python3', SCRIPT_PATH+'send_video.py'],
 	stdout=subprocess.PIPE, 
