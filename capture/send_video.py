@@ -35,5 +35,5 @@ for root, subdirs, files in os.walk(script_path+'h264/'):
 		)
 		stdout,stderr = MyOut.communicate()
 		for line in stdout:
-    		print(line)
+			print(line)
 print('k')
