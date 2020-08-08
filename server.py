@@ -108,7 +108,7 @@ def video_send_to_telegram(script_path):
 	video_file = open(script_path+'/mp4/out.mp4', 'rb')
 	main_bot.send_video('-384403215', video_file,timeout=600)
 	
-def viceo_convert(script_path):
+def video_convert(script_path):
 	mp4_files = []
 	h264_files = []
 	file_number = 0
