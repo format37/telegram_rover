@@ -28,6 +28,7 @@ def convert(script_path):
 			ffmpeg = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
 			out, err = ffmpeg.communicate()
 			mp4_files.append(mp4_filepath)
+			print(mp4_filepath)
 			h264_files.append(script_path+'h264/'+filename)
 			file_number+=1
 	return h264_files,mp4_files
