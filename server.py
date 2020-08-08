@@ -17,9 +17,6 @@ import datetime
 from my_video import video_convert, video_merge, video_send_to_telegram, video_delete_files, delete_first
 
 PORT = '8823'
-#night_led = LED(8)
-#night_led.off()
-
 
 def rover_init():
 	# send ready
@@ -58,10 +55,22 @@ def call_move(request):
 	frequency	= int( float(speed)*2300/100 )
 	frequency	= frequency if frequency>100 else 100
 	time_spent  = 0
+	key_path = '/home/pi/telegram_rover/night_vision.key'
+	night_key = read_night_key(key_path)
 	
 	# ir-cut enable
-	ir_cut	= LED(25)
-	ir_cut.on()
+	#ir_cut	= LED(25)	
+	#ir_cut.on()
+	#time.sleep(0.6)
+	
+	ir_cut	= LED(25)	
+	nigth_led = LED(8)
+	if night_key:
+		ir_cut.off()
+		nigth_led.on()
+	else:
+		ir_cut.on()
+		nigth_led.off()
 	time.sleep(0.6)
 	
 	# voltmeter
@@ -109,6 +118,8 @@ def call_move(request):
 	camera.stop_preview()
 	camera.close()
 	ir_cut.off()
+	nigth_led.off()
+	time.sleep(0.6)
 	
 async def call_photo(request):
 	key_path = '/home/pi/telegram_rover/night_vision.key'
