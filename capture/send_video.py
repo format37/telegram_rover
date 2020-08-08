@@ -49,11 +49,11 @@ def delete_files(script_path,h264_files,mp4_files):
 	mp4_files.append(script_path+'mp4/out.mp4')
 	for full_path in mp4_files:
 		os.unlink(full_path)
-	#for full_path in h264_files:
-		#os.unlink(full_path)
+	for full_path in h264_files:
+		os.unlink(full_path)
 
 script_path = '/home/pi/telegram_rover/capture/'
 h264_files,mp4_files = convert(script_path)
 merge(script_path, mp4_files)
 send_to_telegram(script_path)
-delete_files(h264_files, mp4_files)
+delete_files(script_path,h264_files, mp4_files)
