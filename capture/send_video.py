@@ -30,6 +30,7 @@ def convert(script_path):
 			mp4_files.append(mp4_filepath)
 			print(mp4_filepath)
 			h264_files.append(script_path+'h264/'+filename)
+			print(filename)
 			file_number+=1
 	return h264_files,mp4_files
 
