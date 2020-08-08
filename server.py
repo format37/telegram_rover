@@ -130,7 +130,7 @@ async def call_photo_night(request):
 
 async def call_video(request):
 	script_path = '/home/pi/telegram_rover/capture/'
-	delete_first(script_path,30)
+	delete_first(script_path,20)
 	h264_files,mp4_files = video_convert(script_path)
 	if len(mp4_files):
 		video_merge(script_path, mp4_files)
