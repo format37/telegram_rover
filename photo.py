@@ -44,4 +44,4 @@ SHUNT_OHMS = 0.1
 ina = INA219(SHUNT_OHMS)
 ina.configure()	
 print('sending photo..')
-bot.send_photo( '-384403215', data_file, caption = str(ina.voltage())+" v", timeout=10 )		
+bot.send_photo( '-384403215', data_file, caption = str(ina.voltage())+" v" )		
