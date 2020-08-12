@@ -2,6 +2,7 @@ from picamera import PiCamera
 import telebot
 import os
 import subprocess
+#from telebot import apihelper
 
 def delete_first(script_path,files_to_live_count):
 	current_file_number = 0
@@ -19,9 +20,10 @@ def video_send_to_telegram(script_path):
 		MAIN_API_TOKEN=file.read().replace('\n', '')
 		file.close()
 	main_bot = telebot.TeleBot(MAIN_API_TOKEN)
-	video_file = open(script_path+'/mp4/out.mp4', 'rb')
+	#apihelper.proxy = {'https': 'socks5://telegram.vpn.net:55555'}
+	video_file = open(script_path+'mp4/out.mp4', 'rb')
 	main_bot.send_video('-384403215', video_file,timeout=12000)
-	
+
 def video_convert(script_path):
 	mp4_files = []
 	h264_files = []
