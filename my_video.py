@@ -20,7 +20,7 @@ def video_send_to_telegram(script_path):
 		file.close()
 	main_bot = telebot.TeleBot(MAIN_API_TOKEN)
 	video_file = open(script_path+'/mp4/out.mp4', 'rb')
-	main_bot.send_video('-384403215', video_file,timeout=1200)
+	main_bot.send_video('-384403215', video_file,timeout=12000)
 	
 def video_convert(script_path):
 	mp4_files = []

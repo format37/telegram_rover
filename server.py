@@ -122,7 +122,7 @@ def call_move(request):
 	time.sleep(0.6)
 	
 	script_path = '/home/pi/telegram_rover/capture/'
-	delete_first(script_path,20)
+	delete_first(script_path,10)
 	for root, subdirs, files in os.walk(script_path+'h264/'):
 		pass
 	return web.Response(text=str(len(files))+' video records stored',content_type="text/html")
@@ -165,7 +165,7 @@ async def call_photo_night(request):
 	
 async def call_video(request):
 	script_path = '/home/pi/telegram_rover/capture/'
-	delete_first(script_path,20)
+	delete_first(script_path,3)
 	h264_files,mp4_files = video_convert(script_path)
 	if len(mp4_files):
 		video_merge(script_path, mp4_files)
