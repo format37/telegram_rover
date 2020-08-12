@@ -6,4 +6,4 @@ ina = INA219(SHUNT_OHMS)
 ina.configure()		
 while True:	
 	print(str(round(ina.voltage(),2))+" v. ")
-	time.sleep(0.1)
+	time.sleep(0.5)
