@@ -1,5 +1,6 @@
 from ina219 import INA219
 import time
+import telebot
 
 def send_report(message):
 	with open('/home/pi/telegram_rover/token.key','r') as file:
