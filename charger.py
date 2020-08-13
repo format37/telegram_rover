@@ -65,7 +65,7 @@ if charge_mode:
 	ina = INA219(SHUNT_OHMS)
 	ina.configure()		
 	voltage_current = ina.voltage()
-	if voltage_current<13:
+	if voltage_current<12:
 		send_report('low voltage: '+str(voltage_current)+' v. Moving forward..')
 		move_forward()
 		time.sleep(1)
