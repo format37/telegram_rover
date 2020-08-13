@@ -4,6 +4,7 @@ import telebot
 from gpiozero import LED
 import busio
 from board import SCL, SDA
+from adafruit_pca9685 import PCA9685
 
 def send_report(message):
 	with open('/home/pi/telegram_rover/token.key','r') as file:
