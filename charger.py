@@ -12,7 +12,26 @@ def send_report(message):
 		file.close()
 	main_bot = telebot.TeleBot(MAIN_API_TOKEN)
 	main_bot.send_message('-384403215', message)
-	
+
+def track(pca,t_free,t_dir,channel,direction):
+	if direction==0:
+		t_free[channel].on()#free
+		pca.channels[channel].duty_cycle = 0 #stop
+	else:
+		t_free[channel].off()#lock
+		pca.channels[channel].duty_cycle = 0x7fff #go
+		
+	if channel==0:
+		if direction ==-1:
+			t_dir[channel].on()#back			
+		if direction == 1:
+			t_dir[channel].off()#front
+	if channel==1:
+		if direction ==-1:
+			t_dir[channel].off()#back
+		if direction == 1:
+			t_dir[channel].on()#front	
+
 def move_forward():
 	
 	frequency	= 2300
