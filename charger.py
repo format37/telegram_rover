@@ -2,6 +2,7 @@ from ina219 import INA219
 import time
 import telebot
 from gpiozero import LED
+import busio
 
 def send_report(message):
 	with open('/home/pi/telegram_rover/token.key','r') as file:
