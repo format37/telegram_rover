@@ -3,6 +3,7 @@ import time
 import telebot
 from gpiozero import LED
 import busio
+from board import SCL, SDA
 
 def send_report(message):
 	with open('/home/pi/telegram_rover/token.key','r') as file:
