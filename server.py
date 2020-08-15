@@ -56,7 +56,7 @@ def call_move(request):
 	frequency	= frequency if frequency>100 else 100
 	time_spent  = 0
 	key_path = '/home/pi/telegram_rover/night_vision.key'
-	night_key = read_night_key(key_path)
+	night_key = read_key(key_path)
 	
 	# ir-cut enable
 	#ir_cut	= LED(25)	
@@ -130,7 +130,7 @@ def call_move(request):
 	
 async def call_photo(request):
 	key_path = '/home/pi/telegram_rover/night_vision.key'
-	night_key = read_night_key(key_path)
+	night_key = read_key(key_path)
 	SCRIPT_PATH = '/home/pi/telegram_rover/'
 	MyOut = subprocess.Popen(
 	['python3', SCRIPT_PATH+'photo.py',str(night_key)],
