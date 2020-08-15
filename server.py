@@ -139,7 +139,7 @@ async def call_photo(request):
 	stdout,stderr = MyOut.communicate()		
 	return web.Response(text='ok',content_type="text/html")
 
-def read_night_key(key_path):	
+def read_key(key_path):	
 	with open(key_path,'r') as file:
 		night_key=int(file.read().replace('\n', ''))
 		file.close()
@@ -148,7 +148,7 @@ def read_night_key(key_path):
 async def call_photo_night(request):
 	# night vision switcher
 	key_path = '/home/pi/telegram_rover/night_vision.key'
-	night_key = read_night_key(key_path)
+	night_key = read_key(key_path)
 		
 	if night_key:
 		answer = 'Night vision: Disabled'
@@ -159,6 +159,24 @@ async def call_photo_night(request):
 		
 	with open(key_path,'w') as file:
 		file.write(str(night_key))
+		file.close()
+		
+	return web.Response(text=answer,content_type="text/html")
+
+async def call_charge_mode(request):
+	# charge mode switcher
+	key_path = '/home/pi/telegram_rover/charge_mode.key'
+	charge_key = read_key(key_path)
+		
+	if charge_key:
+		answer = 'Charge mode: Disabled'
+		charge_key = 0
+	else:
+		answer = 'Charge mode: Enabled'
+		charge_key = 1
+		
+	with open(key_path,'w') as file:
+		file.write(str(charge_key))
 		file.close()
 		
 	return web.Response(text=answer,content_type="text/html")
@@ -182,6 +200,7 @@ app = web.Application()
 app.router.add_route('GET', '/move',	call_move)
 app.router.add_route('GET', '/photo',	call_photo)
 app.router.add_route('GET', '/photo_night',	call_photo_night)
+app.router.add_route('GET', '/charge_mode',	call_charge_mode)
 app.router.add_route('GET', '/check',	call_check)
 app.router.add_route('GET', '/video',	call_video)
 
