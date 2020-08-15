@@ -82,6 +82,14 @@ def rover_photo_night(user_id):
 	else:
 		return "unavailable for. u"
 	
+def rover_charge_mode(user_id):
+	god_mode	= user_id == 106129214
+	if god_mode:
+		url	= "http://95.165.139.53:8823/telegram_rover_charge_mode.php"
+		return	'ok c '+requests.get(url).text
+	else:
+		return "unavailable for. u"
+	
 def rover_send_video_merged(user_id):
 	god_mode	= user_id == 106129214
 	if god_mode:
