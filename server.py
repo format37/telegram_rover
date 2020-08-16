@@ -182,22 +182,25 @@ async def call_charge_mode(request):
 	return web.Response(text=answer,content_type="text/html")
 	
 async def call_video(request):
+	result = ''
 	try:
 		script_path = '/home/pi/telegram_rover/capture/'
 		if os.path.exists(script_path+'mp4/out.mp4'):
+			result +='file exist. '
 			video_send_to_telegram(script_path)
 			video_delete_all(script_path)
-			result = 'video file sent'
+			result += 'video file sent'
 		else:
 			delete_first(script_path,10)
 			h264_files,mp4_files = video_convert(script_path)
 			if len(mp4_files):
 				video_merge(script_path, mp4_files)
+				result +='sending.. '
 				video_send_to_telegram(script_path)
 				video_delete_files(script_path,h264_files, mp4_files)
-				result = str(len(mp4_files))+' merged'
+				result += str(len(mp4_files))+' merged and sent'
 	except Exception as e:
-		result = 'fail: '+str(e)
+		result += 'fail: '+str(e)
 	return web.Response(text=result,content_type="text/html")
 
 async def call_check(request):
