@@ -14,6 +14,14 @@ def delete_first(script_path,files_to_live_count):
 			else:
 				print("don't touch: " + filename)
 			current_file_number+=1
+			
+def video_delete_all(script_path):	
+	for root, subdirs, files in os.walk(script_path+'h264/'):
+		for filename in files:
+			os.unlink(script_path+'h264/' + filename)
+	for root, subdirs, files in os.walk(script_path+'mp4/'):
+		for filename in files:
+			os.unlink(script_path+'mp4/' + filename)
 
 def video_send_to_telegram(script_path):
 	with open('/home/pi/telegram_rover/token.key','r') as file:
