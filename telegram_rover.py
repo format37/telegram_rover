@@ -22,7 +22,7 @@ def bot_init(WEBHOOK_HOST,WEBHOOK_PORT,WEBHOOK_SSL_CERT, SCRIPT_PATH):
 	return bot
 
 def move_cmd(user_id,cmd):
-	god_mode	= user_id == 106129214
+	god_mode	= user_id == -384403215
 	if god_mode:
 		url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
 		return 'ok cmd '+str(requests.get(url).text)
@@ -30,7 +30,7 @@ def move_cmd(user_id,cmd):
 		return "unavailable for. u"
 
 def move_f(user_id,delay,speed):
-	god_mode	= user_id == 106129214
+	god_mode	= user_id == -384403215
 	if god_mode:
 		cmd 	= 'track_left=1&track_right=1&delay='+str(delay)+'&speed='+str(speed)
 		url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
@@ -40,7 +40,7 @@ def move_f(user_id,delay,speed):
 
 	
 def move_b(user_id,delay,speed):
-	god_mode	= user_id == 106129214
+	god_mode	= user_id == -384403215
 	if god_mode:
 		cmd 	= 'track_left=-1&track_right=-1&delay='+str(delay)+'&speed='+str(speed)
 		url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
@@ -49,7 +49,7 @@ def move_b(user_id,delay,speed):
 		return "unavailable for. u"
 	
 def move_l(user_id,delay,speed):
-	god_mode	= user_id == 106129214
+	god_mode	= user_id == -384403215
 	if god_mode:
 		cmd 	= 'track_left=-1&track_right=1&delay='+str(delay)+'&speed='+str(speed)
 		url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd
@@ -58,7 +58,7 @@ def move_l(user_id,delay,speed):
 		return "unavailable for. u"	
 		
 def move_r(user_id,delay,speed):
-	god_mode	= user_id == 106129214
+	god_mode	= user_id == -384403215
 	if god_mode:
 		cmd 	= 'track_left=1&track_right=-1&delay='+str(delay)+'&speed='+str(speed)
 		url	= "http://95.165.139.53:8823/telegram_rover.php?"+cmd		
@@ -67,7 +67,7 @@ def move_r(user_id,delay,speed):
 		return "unavailable for. u"
 	
 def rover_photo(user_id):
-	god_mode	= user_id == 106129214
+	god_mode	= user_id == -384403215
 	if god_mode:
 		url	= "http://95.165.139.53:8823/telegram_rover_photo.php"
 		return	'ok p '+requests.get(url).text
@@ -75,7 +75,7 @@ def rover_photo(user_id):
 		return "unavailable for. u"
 
 def rover_photo_night(user_id):
-	god_mode	= user_id == 106129214
+	god_mode	= user_id == -384403215
 	if god_mode:
 		url	= "http://95.165.139.53:8823/telegram_rover_photo_night.php"
 		return	'ok n '+requests.get(url).text
@@ -83,7 +83,7 @@ def rover_photo_night(user_id):
 		return "unavailable for. u"
 	
 def rover_charge_mode(user_id):
-	god_mode	= user_id == 106129214
+	god_mode	= user_id == -384403215
 	if god_mode:
 		url	= "http://95.165.139.53:8823/telegram_rover_charge_mode.php"
 		return	'ok c '+requests.get(url).text
@@ -91,7 +91,7 @@ def rover_charge_mode(user_id):
 		return "unavailable for. u"
 	
 def rover_send_video_merged(user_id):
-	god_mode	= user_id == 106129214
+	god_mode	= user_id == -384403215
 	if god_mode:
 		url	= "http://95.165.139.53:8823/telegram_rover_video.php"
 		return	'ok v '+requests.get(url).text
